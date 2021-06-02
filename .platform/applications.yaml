@@ -12,13 +12,14 @@
                   version: '1.1.6'
                   upstream: 'python-poetry/poetry'
 
-  build: |
-      set -e 
+  hooks:
+      build: |
+          set -e 
 
-      # Get Poetry.
-      POETRY_VERSION=$(echo $AUTO_UPDATES | jq -r '.poetry.version')
-      curl -s https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
-      python get-poetry.py --version $POETRY_VERSION
+          # Get Poetry.
+          POETRY_VERSION=$(echo $AUTO_UPDATES | jq -r '.poetry.version')
+          curl -s https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
+          python get-poetry.py --version $POETRY_VERSION
 
   web:
       commands:
