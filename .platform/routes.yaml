@@ -1,0 +1,31 @@
+  
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going to be processed by Platform.sh.
+#
+# See https://docs.platform.sh/user_guide/reference/routes-yaml.html
+
+"https://api.{default}/":
+    type: upstream
+    upstream: "saleor:http"
+    id: backend
+
+"https://www.api.{default}/":
+    type: redirect
+    to: "https://api.{default}/"
+
+# "https://dashboard.{default}/":
+#     type: upstream
+#     upstream: "dashboard:http"
+
+# "https://www.dashboard.{default}/":
+#     type: redirect
+#     to: "https://dashboard.{default}/"
+
+# "https://{default}/":
+#     type: upstream
+#     upstream: "storefront:http"
+
+# "https://www.{default}/":
+#     type: redirect
+#     to: "https://{default}/"
