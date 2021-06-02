@@ -45,15 +45,15 @@ hooks:
         poetry install -v --no-dev
 
         # Collect static assets for Saleor.
-        SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
-    deploy: |
-        cd ~/$PLATFORM_APPLICATION_NAME
-        
-        # Apply database migrations.
-        poetry run python ~/manage.py migrate
+        # SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
+    # deploy: |
+    #     cd ~/$PLATFORM_APPLICATION_NAME
 
-        # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-        poetry run python ~/manage.py populatedb --createsuperuser
+    #     # Apply database migrations.
+    #     poetry run python ~/manage.py migrate
+
+    #     # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
+    #     poetry run python ~/manage.py populatedb --createsuperuser
 
 web:
     upstream:
@@ -76,3 +76,10 @@ mounts:
     'saleor/media':
         source: local
         source_path: saleor/media
+
+source:
+    operations:
+        update_saleor:
+            command: |
+                set -e
+                ./auto-update.sh
