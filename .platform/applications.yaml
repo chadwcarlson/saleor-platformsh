@@ -10,7 +10,7 @@
                   upstream: 'mirumee/saleor'
               poetry:
                   version: '1.1.6'
-                  latest: 'python-poetry/poetry'
+                  upstream: 'python-poetry/poetry'
 
   build: |
       set -e 
