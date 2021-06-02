@@ -1,0 +1,30 @@
+# Source Poetry, so available during SSH.
+. $PLATFORM_APP_DIR/.poetry/env
+
+# Django's ALLOWED_HOSTS setting
+ENVIRONMENT=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key | split("//")[1]')
+export ALLOWED_HOSTS=${ENVIRONMENT%/}
+
+# Cache database
+CACHE_SCHEME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.rediscache[0].scheme')
+CACHE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.rediscache[0].host')
+CACHE_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.rediscache[0].port')
+export CACHE_URL=$CACHE_SCHEME://$CACHE_HOST:$CACHE_PORT
+
+# Database configuration
+DB_SCHEME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].scheme')
+DB_USERNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].username')
+DB_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].password')
+DB_HOSTNAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].host')
+DB_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].port')
+DB_NAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].path')
+export DATABASE_URL=$DB_SCHEME://$DB_USERNAME:$DB_PASSWORD@$DB_HOSTNAME:$DB_PORT/$DB_NAME
+
+# Django's debug mode
+DEBUG=False
+
+# Email
+export DEFAULT_FROM_EMAIL=mysaleor@example.com
+
+# Django's secret key configuration
+export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
