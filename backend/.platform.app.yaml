@@ -1,0 +1,78 @@
+name: 'saleor'
+
+type: 'python:3.8'
+
+variables:
+    env:
+        AUTO_UPDATES:
+            saleor: 
+                version: '2.11.8'
+                upstream: 'mirumee/saleor'
+            poetry:
+                version: '1.1.5'
+                upstream: 'python-poetry/poetry'
+
+relationships:
+    database: "db:postgresql"
+    rediscache: "cacheredis:redis"
+
+hooks:
+    build: |
+        set -e 
+
+        # Get Poetry.
+        POETRY_UPSTREAM=$(echo $AUTO_UPDATES | jq -r '.poetry.upstream')
+        POETRY_VERSION=$(echo $AUTO_UPDATES | jq -r '.poetry.version')
+        curl -s https://raw.githubusercontent.com/$POETRY_UPSTREAM/master/get-poetry.py >> get-poetry.py
+        python get-poetry.py --version $POETRY_VERSION
+
+        # Configure Poetry.   
+        . $PLATFORM_APP_DIR/.poetry/env
+        echo "export PATH=\"$HOME/.poetry/bin:$PATH\"" >> .global/environment
+        echo "export POETRY_VIRTUALENVS_PATH=$HOME/.virtualenvs" >> .global/environment
+        export PATH="$HOME/.poetry/bin:$PATH"
+        export PIP_USER=false
+        poetry config virtualenvs.path $HOME/.virtualenvs
+
+        # Get Saleor.
+        SALEOR_UPSTREAM=$(echo $AUTO_UPDATES | jq -r '.saleor.upstream')
+        SALEOR_VERSION=$(echo $AUTO_UPDATES | jq -r '.saleor.version')
+        wget --quiet -c https://github.com/$SALEOR_UPSTREAM/archive/refs/tags/$SALEOR_VERSION.tar.gz -O - | tar -xz
+        mv saleor-$SALEOR_VERSION $PLATFORM_APPLICATION_NAME
+
+        # Install dependencies.
+        cd ~/$PLATFORM_APPLICATION_NAME
+        poetry install -v --no-dev
+
+        # Collect static assets for Saleor.
+        SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
+    deploy: |
+        cd ~/$PLATFORM_APPLICATION_NAME
+        
+        # Apply database migrations.
+        poetry run python ~/manage.py migrate
+
+        # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
+        poetry run python ~/manage.py populatedb --createsuperuser
+
+web:
+    upstream:
+        socket_family: unix
+    commands:
+        start: "poetry run gunicorn --bind unix:$SOCKET --workers 4 --worker-class uvicorn.workers.UvicornWorker saleor.asgi:application"
+    locations:
+        "/":
+            passthru: true
+        "/static":
+            root: "static"
+            expires: 1h
+            allow: true
+
+# The size of the persistent disk of the application (in MB).
+disk: 1024
+
+# Set a local R/W mount for logs
+mounts:
+    'saleor/media':
+        source: local
+        source_path: saleor/media
