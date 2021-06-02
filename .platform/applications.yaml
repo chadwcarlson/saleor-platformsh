@@ -13,7 +13,7 @@
                   upstream: 'python-poetry/poetry'
 
   relationships:
-      database: "dbb:postgresql"
+      database: "db:postgresql"
       rediscache: "cacheredis:redis"
 
   hooks:
