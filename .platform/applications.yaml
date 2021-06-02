@@ -40,7 +40,8 @@
           wget --quiet -c https://github.com/$SALEOR_UPSTREAM/archive/refs/tags/$SALEOR_VERSION.tar.gz -O - | tar -xz
           mv saleor-$SALEOR_VERSION saleor
 
-          # Install dependencies.    
+          # Install dependencies.
+          cd saleor
           poetry install -v --no-dev
 
           # Collect static assets for Saleor.
