@@ -31,13 +31,11 @@ hooks:
         # SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
 
     deploy: |
-        cd ~/$PLATFORM_APPLICATION_NAME
-
         # Apply database migrations.
-        poetry run python ~/manage.py migrate
+        poetry run python $PLATFORM_APPLICATION_NAME/manage.py migrate
 
         # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-        poetry run python ~/manage.py populatedb --createsuperuser
+        poetry run python $PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser
 
 web:
     upstream:
