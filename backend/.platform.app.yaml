@@ -37,7 +37,7 @@ hooks:
         poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
 
         # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser
+        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser  --withoutimages
 
 web:
     upstream:
@@ -47,9 +47,7 @@ web:
     locations:
         "/":
             passthru: true
-            # root: saleor
         "/static":
-            # root: "saleor/static"
             expires: 1h
             allow: true
 

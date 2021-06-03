@@ -21,6 +21,15 @@
             "version": "2.10.2"
         }, 
         "upstream": "mirumee/saleor", 
+        "version": "2.11.8"
+    },
+    "dashboard": {
+        "last_update": "06-03-2021-14:39", 
+        "previous": {
+            "release": "minor", 
+            "version": "2.10.2"
+        }, 
+        "upstream": "mirumee/saleor-dashboard", 
         "version": "2.11.9"
     }
 }
