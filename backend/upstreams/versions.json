@@ -15,6 +15,6 @@
             "version": "2.10.1"
         }, 
         "upstream": "mirumee/saleor", 
-        "version": "2.11.9"
+        "version": "1.11.9"
     }
 }
