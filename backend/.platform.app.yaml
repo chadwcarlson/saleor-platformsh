@@ -63,7 +63,7 @@ mounts:
 source:
     operations:
         upstream_update: 
-            command: ./upstream/update.sh $UPSTREAM
+            command: ./upstreams/update.sh $UPSTREAM
         update_dependencies:
             command: |
                 set -e

@@ -14,13 +14,13 @@
     type: redirect
     to: "https://api.{default}/"
 
-# "https://dashboard.{default}/":
-#     type: upstream
-#     upstream: "dashboard:http"
+"https://dashboard.{default}/":
+    type: upstream
+    upstream: "dashboard:http"
 
-# "https://www.dashboard.{default}/":
-#     type: redirect
-#     to: "https://dashboard.{default}/"
+"https://www.dashboard.{default}/":
+    type: redirect
+    to: "https://dashboard.{default}/"
 
 # "https://{default}/":
 #     type: upstream
