@@ -1,0 +1,20 @@
+{
+    "poetry": {
+        "last_update": "06-03-2021-13:10", 
+        "previous": {
+            "release": "patch", 
+            "version": "1.1.4"
+        }, 
+        "upstream": "python-poetry/poetry", 
+        "version": "1.1.5"
+    }, 
+    "saleor": {
+        "last_update": "06-03-2021-14:10", 
+        "previous": {
+            "release": "minor", 
+            "version": "2.10.1"
+        }, 
+        "upstream": "mirumee/saleor", 
+        "version": "2.11.9"
+    }
+}
