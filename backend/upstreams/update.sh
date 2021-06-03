@@ -7,7 +7,7 @@ CURRENT_VERSION=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM"
 NAMESPACE=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM" '.[$UPSTREAM].upstream')
 RELEASE_URL=https://api.github.com/repos/$NAMESPACE/releases/latest
 LATEST_VERSION=$(curl -s $RELEASE_URL| jq -r '.tag_name') 
-echo -e "\nRunning scheduled upstream update for \033[1m$UPSTREAM\033[0m\n"
+echo -e "\nRunning scheduled upstream update for \033[1m$UPSTREAM\033[0m.\n"
 if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
     echo -e "Current version (\033[1m$CURRENT_VERSION\033[0m) is still the latest.\nSkipping update.\n"
 else
