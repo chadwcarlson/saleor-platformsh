@@ -19,6 +19,6 @@ else
         # echo -e "Configuration updated. Committing.\n"
         git commit -m "Updated $UPSTREAM ($CURRENT_VERSION -> $LATEST_VERSION)."
     else
-        echo "No WordPress updates found."
+        echo "No updates applied for $UPSTREAM."
     fi
 fi
