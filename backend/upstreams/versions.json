@@ -4,6 +4,7 @@
         "minor": true, 
         "patch": true
     }, 
+    "branch": "auto-updates",
     "poetry": {
         "last_update": "06-03-2021-14:39", 
         "previous": {

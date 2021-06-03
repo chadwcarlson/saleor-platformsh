@@ -3,6 +3,14 @@ set -e
 
 UPSTREAM=$1
 echo -e "\n\033[1mPLATFORM.SH SCHEDULED UPDATES\033[0m\n"
+# UPDATE_BRANCH=$(cat upstreams/versions.json | jq -r '.branch')
+# if [ -z "${PLATFORM_TREE_ID}" ]; then 
+#     echo -e "* Environment: local"
+#     BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+#     echo -e "* Branch: $BRANCH"
+# else
+#     echo -e "* Environment: Platform.sh\n"
+# fi
 CURRENT_VERSION=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM" '.[$UPSTREAM].version')
 NAMESPACE=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM" '.[$UPSTREAM].upstream')
 RELEASE_URL=https://api.github.com/repos/$NAMESPACE/releases/latest
@@ -22,4 +30,9 @@ else
     else
         echo -e "No update commits for $UPSTREAM according to \033[1mallowed\033[0m update rules in 'upstreams/versions.json'.\n"
     fi
+fi
+
+if [ "$PLATFORM_BRANCH" = update-wordpress ]; then
+    platform environment:sync code data --no-wait --yes
+    platform source-operation:run update-wordpress --no-wait --yes
 fi

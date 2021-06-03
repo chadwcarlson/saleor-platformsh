@@ -29,15 +29,15 @@ hooks:
 
         # Collect static assets for Saleor.
         # SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
-        
-    # deploy: |
-    #     cd ~/$PLATFORM_APPLICATION_NAME
 
-    #     # Apply database migrations.
-    #     poetry run python ~/manage.py migrate
+    deploy: |
+        cd ~/$PLATFORM_APPLICATION_NAME
 
-    #     # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-    #     poetry run python ~/manage.py populatedb --createsuperuser
+        # Apply database migrations.
+        poetry run python ~/manage.py migrate
+
+        # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
+        poetry run python ~/manage.py populatedb --createsuperuser
 
 web:
     upstream:
@@ -47,8 +47,9 @@ web:
     locations:
         "/":
             passthru: true
+            root: saleor
         "/static":
-            root: "static"
+            root: "saleor/static"
             expires: 1h
             allow: true
 
@@ -71,6 +72,13 @@ source:
                 cd saleor && poetry update
 
 # crons:
+#     update_saleor:
+#         cmd: |
+#             UPDATE_BRANCH=$(cat upstreams/versions.json | jq -r '.branch')
+#             if [ "$PLATFORM_BRANCH" = $UPDATE_BRANCH ]; then
+#                 platform environment:sync code data --no-wait --yes
+#                 platform source-operation:run upstream_update --variable env:UPSTREAM=saleor --no-wait --yes
+#             fi
 #     update_minimal_variant_prices:
 #         spec: '0 3 * * *'
 #         cmd: '.poetry/bin/poetry run python ~/manage.py update_all_products_minimal_variant_prices'

@@ -22,7 +22,7 @@ version_file = 'upstreams/versions.json'
 # Auto-merge passing patch releases?
 # Auto updates on P.sh container versions? (augustin's community script?)
 update_defaults = {
-    "allow": {
+    "allowed": {
         "major": False,
         "minor": True,
         "patch": True
@@ -52,9 +52,10 @@ def write_updates(data, new_version, release_type):
 
 with open(version_file, 'r') as f:
     data = json.load(f)
-    if is_major(data[upstream]['version'], new_version) and update_defaults['allow']['major']:
+    update_rules = data["allowed"] or update_defaults["allowed"]
+    if is_major(data[upstream]['version'], new_version) and update_rules['major']:
         write_updates(data, new_version, "major")
-    elif is_minor(data[upstream]['version'], new_version) and update_defaults['allow']['minor']:
+    elif is_minor(data[upstream]['version'], new_version) and update_rules['minor']:
         write_updates(data, new_version, "minor")
-    elif is_patch(data[upstream]['version'], new_version) and update_defaults['allow']['patch']:
+    elif is_patch(data[upstream]['version'], new_version) and update_rules['patch']:
         write_updates(data, new_version, "patch")
