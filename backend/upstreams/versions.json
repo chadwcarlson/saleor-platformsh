@@ -5,16 +5,16 @@
         "patch": true
     }, 
     "poetry": {
-        "last_update": "06-03-2021-14:35", 
+        "last_update": "06-03-2021-14:26", 
         "previous": {
             "release": "patch", 
-            "version": "1.1.5"
+            "version": "1.1.4"
         }, 
         "upstream": "python-poetry/poetry", 
-        "version": "1.1.6"
+        "version": "1.1.5"
     }, 
     "saleor": {
-        "last_update": "06-03-2021-14:37", 
+        "last_update": "06-03-2021-14:39", 
         "previous": {
             "release": "minor", 
             "version": "2.10.2"
