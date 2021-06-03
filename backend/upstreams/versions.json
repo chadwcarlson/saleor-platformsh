@@ -14,12 +14,12 @@
         "version": "1.1.6"
     }, 
     "saleor": {
-        "last_update": "06-03-2021-14:27", 
+        "last_update": "06-03-2021-14:36", 
         "previous": {
             "release": "minor", 
-            "version": "2.10.1"
+            "version": "2.10.2"
         }, 
         "upstream": "mirumee/saleor", 
-        "version": "2.10.2"
+        "version": "2.11.9"
     }
 }
