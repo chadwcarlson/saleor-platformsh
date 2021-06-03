@@ -32,8 +32,6 @@ hooks:
 
     deploy: |
         cd ~/$PLATFORM_APPLICATION_NAME
-        echo $PLATFORM_APPLICATION_NAME
-        pwd
         
         # Apply database migrations.
         poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
@@ -45,13 +43,13 @@ web:
     upstream:
         socket_family: unix
     commands:
-        start: "poetry run gunicorn --bind unix:$SOCKET --workers 4 --worker-class uvicorn.workers.UvicornWorker saleor.asgi:application"
+        start: "cd ~/$PLATFORM_APPLICATION_NAME && poetry run gunicorn --bind unix:$SOCKET --workers 4 --worker-class uvicorn.workers.UvicornWorker saleor.asgi:application"
     locations:
         "/":
             passthru: true
-            root: saleor
+            # root: saleor
         "/static":
-            root: "saleor/static"
+            # root: "saleor/static"
             expires: 1h
             allow: true
 
