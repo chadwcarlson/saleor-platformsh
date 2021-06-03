@@ -1,0 +1,35 @@
+{
+    "allowed": {
+        "major": false, 
+        "minor": true, 
+        "patch": true
+    }, 
+    "branch": "auto-updates",
+    "poetry": {
+        "last_update": "06-03-2021-14:39", 
+        "previous": {
+            "release": "patch", 
+            "version": "1.1.5"
+        }, 
+        "upstream": "python-poetry/poetry", 
+        "version": "1.1.6"
+    }, 
+    "saleor": {
+        "last_update": "06-03-2021-14:39", 
+        "previous": {
+            "release": "minor", 
+            "version": "2.10.2"
+        }, 
+        "upstream": "mirumee/saleor", 
+        "version": "2.11.8"
+    },
+    "dashboard": {
+        "last_update": "06-03-2021-14:39", 
+        "previous": {
+            "release": "minor", 
+            "version": "2.10.2"
+        }, 
+        "upstream": "mirumee/saleor-dashboard", 
+        "version": "2.11.1"
+    }
+}
