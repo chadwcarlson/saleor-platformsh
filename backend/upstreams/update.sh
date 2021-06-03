@@ -15,10 +15,11 @@ else
     python upstreams/bump.py $UPSTREAM $LATEST_VERSION
     git add .
     STAGED_UPDATES=$(git diff --cached)
-    if [ ${#STAGED_UPDATES} -gt 0 ]; then
+    NEW_CURRENT_VERSION=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM" '.[$UPSTREAM].version')
+    if [ ${#STAGED_UPDATES} -gt 0 ] && [ "$NEW_CURRENT_VERSION" = "$LATEST_VERSION" ]; then
         echo -e "Upstream tag updated. Committing changes.\n"
         git commit -m "Updated $UPSTREAM ($CURRENT_VERSION -> $LATEST_VERSION)."
     else
-        echo "No updates applied for $UPSTREAM."
+        echo -e "No update commits for $UPSTREAM according to \033[1mallowed\033[0m update rules in 'upstreams/versions.json'.\n"
     fi
 fi

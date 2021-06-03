@@ -1,6 +1,11 @@
 {
+    "allowed": {
+        "major": false, 
+        "minor": true, 
+        "patch": true
+    }, 
     "poetry": {
-        "last_update": "06-03-2021-14:26", 
+        "last_update": "06-03-2021-14:35", 
         "previous": {
             "release": "patch", 
             "version": "1.1.5"
@@ -15,6 +20,6 @@
             "version": "2.10.1"
         }, 
         "upstream": "mirumee/saleor", 
-        "version": "1.11.9"
+        "version": "2.10.2"
     }
 }
