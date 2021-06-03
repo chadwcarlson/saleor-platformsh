@@ -16,6 +16,7 @@ else
     git add .
     STAGED_UPDATES=$(git diff --cached)
     if [ ${#STAGED_UPDATES} -gt 0 ]; then
+        echo -e "\nUpdating configuration and committing changes.\n"
         git commit -m "Updated $UPSTREAM ($CURRENT_VERSION -> $LATEST_VERSION)."
     else
         echo "No updates applied for $UPSTREAM."
