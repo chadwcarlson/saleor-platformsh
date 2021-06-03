@@ -31,8 +31,10 @@ hooks:
         # SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
 
     deploy: |
+        cd ~/$PLATFORM_APPLICATION_NAME
         echo $PLATFORM_APPLICATION_NAME
         pwd
+        
         # Apply database migrations.
         poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
 
