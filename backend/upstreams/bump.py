@@ -54,7 +54,9 @@ with open(version_file, 'r') as f:
     data = json.load(f)
     if is_major(data[upstream]['version'], new_version) and update_defaults['allow']['major']:
         write_updates(data, new_version, "major")
-    elif is_minor(data[upstream]['version'], new_version) and update_defaults['allow']['minor']:
-        write_updates(data, new_version, "minor")
-    elif is_patch(data[upstream]['version'], new_version) and update_defaults['allow']['patch']:
-        write_updates(data, new_version, "patch")
+    else:
+        if is_minor(data[upstream]['version'], new_version) and update_defaults['allow']['minor']:
+            write_updates(data, new_version, "minor")
+        else:
+            if is_patch(data[upstream]['version'], new_version) and update_defaults['allow']['patch']:
+                write_updates(data, new_version, "patch")
