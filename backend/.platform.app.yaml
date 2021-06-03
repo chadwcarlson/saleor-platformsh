@@ -79,7 +79,7 @@ source:
 #             fi
 #     update_minimal_variant_prices:
 #         spec: '0 3 * * *'
-#         cmd: '.poetry/bin/poetry run python ~/manage.py update_all_products_minimal_variant_prices'
+#         cmd: 'poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py update_all_products_minimal_variant_prices'
 #     update_exchange_rates:
 #         spec: '30 3 * * *'
-#         cmd: '.poetry/bin/poetry run python ~/manage.py update_exchange_rates --all'
+#         cmd: 'poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py update_exchange_rates --all'

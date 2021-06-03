@@ -18,7 +18,7 @@ else
     NEW_CURRENT_VERSION=$(cat upstreams/versions.json | jq -r --arg UPSTREAM "$UPSTREAM" '.[$UPSTREAM].version')
     if [ ${#STAGED_UPDATES} -gt 0 ] && [ "$NEW_CURRENT_VERSION" = "$LATEST_VERSION" ]; then
         echo -e "Upstream tag updated to \033[1m$LATEST_VERSION\033[0m. Committing changes.\n"
-        git commit -m "Updated $UPSTREAM ($CURRENT_VERSION -> $LATEST_VERSION)."
+        git commit -m "Updated $UPSTREAM ($CURRENT_VERSION to $LATEST_VERSION)."
     else
         echo -e "No update commits for $UPSTREAM according to \033[1mallowed\033[0m update rules in 'upstreams/versions.json'.\n"
     fi

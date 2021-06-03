@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 VERSIONS_FILE=upstreams/versions.json
 UPSTREAM=$(cat $VERSIONS_FILE | jq -r '.dashboard.upstream')
 VERSION=$(cat $VERSIONS_FILE | jq -r '.dashboard.version')

@@ -10,15 +10,12 @@ variables:
         # USE_DEMO_DATA: true
 
 hooks:
-    build: |
-        set -e 
-
-        # Get Saleor dashboard.
-        ./upstreams/dashboard.sh
-
-    # post_deploy: |
-    #     # set -e 
-    #     npm run build
+    build: !include
+        type: string
+        path: upstreams/dashboard.sh
+    post_deploy: |
+        # set -e 
+        npm run build
 
 # relationships:
 #     api: "saleor:http"
@@ -26,10 +23,10 @@ hooks:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
-# mounts:
-#     build:
-#         source: local
-#         source_path: build
+mounts:
+    build:
+        source: local
+        source_path: build
 
 web:
     locations:
