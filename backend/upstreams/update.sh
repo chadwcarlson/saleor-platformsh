@@ -31,8 +31,3 @@ else
         echo -e "No update commits for $UPSTREAM according to \033[1mallowed\033[0m update rules in 'upstreams/versions.json'.\n"
     fi
 fi
-
-if [ "$PLATFORM_BRANCH" = update-wordpress ]; then
-    platform environment:sync code data --no-wait --yes
-    platform source-operation:run update-wordpress --no-wait --yes
-fi
