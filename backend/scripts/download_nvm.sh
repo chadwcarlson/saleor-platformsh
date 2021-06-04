@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Check build cache usage https://gist.github.com/devicezero/b38ed48bccaef72a0ab24293552992d8
-
+NODE_VERSION=$(cat backend/saleor/.nvmrc)
 unset NPM_CONFIG_PREFIX
 export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
 if [ ! -d "$NVM_DIR/" ]; then
