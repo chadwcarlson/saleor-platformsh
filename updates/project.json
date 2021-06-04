@@ -43,15 +43,10 @@
                 "upstream": "nvm-sh/nvm",
                 "version": "v0.38.0"
             },
-            "npm": {
-                "upstream": "npm/cli",
-                "version": "v7.16.0"
-            },
             "runtime": {
-                "python": {
-                    "version": "3.8",
-                    "upstream": "platformsh-registry"
-                }
+                "type": "python",
+                "version": "3.8",
+                "upstream": "platformsh-registry"
             }
 
         },

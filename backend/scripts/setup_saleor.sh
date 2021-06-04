@@ -12,14 +12,15 @@ poetry install -v --no-dev
 npm -v
 node --version
 
+pwd
 ./scripts/download_nvm.sh
 
 npm -v 
 node --version
 
-npm install
-poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py get_graphql_schema > ~/$PLATFORM_APPLICATION_NAME/saleor/graphql/schema.graphql
-npm run build-emails
+# npm install
+# poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py get_graphql_schema > ~/$PLATFORM_APPLICATION_NAME/saleor/graphql/schema.graphql
+# npm run build-emails
 
 
 # Collect static assets for Saleor.
