@@ -2,42 +2,21 @@ name: 'saleor'
 
 type: 'python:3.8'
 
+variables:
+    env: 
+        USE_DEMO_DATA: true
+
 relationships:
-    database: "db:postgresql"
+    database: "dbb:postgresql"
     rediscache: "cacheredis:redis"
 
 hooks:
-    build: |
-        set -e 
-
-        # Get Poetry.
-        ./upstreams/poetry.sh
-
-        # Configure Poetry.   
-        . $PLATFORM_APP_DIR/.poetry/env
-        echo "export PATH=\"$HOME/.poetry/bin:$PATH\"" >> .global/environment
-        echo "export POETRY_VIRTUALENVS_PATH=$HOME/.virtualenvs" >> .global/environment
-        export PATH="$HOME/.poetry/bin:$PATH"
-        export PIP_USER=false
-        poetry config virtualenvs.path $HOME/.virtualenvs
-
-        # Get Saleor.
-        ./upstreams/saleor.sh
-
-        # Install dependencies.
-        cd ~/$PLATFORM_APPLICATION_NAME && poetry install -v --no-dev
-
-        # Collect static assets for Saleor.
-        # SECRET_KEY=$PLATFORM_PROJECT_ENTROPY poetry run ~/manage.py collectstatic --no-input
-
-    deploy: |
-        cd ~/$PLATFORM_APPLICATION_NAME
-        
-        # Apply database migrations.
-        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
-
-        # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser  --withoutimages
+    build: !include
+        type: string
+        path: scripts/_build.sh
+    deploy: !include
+        type: string
+        path: scripts/_deploy.sh
 
 web:
     upstream:
@@ -58,7 +37,10 @@ disk: 1024
 mounts:
     'saleor/media':
         source: local
-        source_path: saleor/media
+        source_path: 'saleor/media'
+    '/.demo'
+        source: local
+        source_path: '.demo'
 
 source:
     operations:
