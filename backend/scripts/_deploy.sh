@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# set -e
+
 POPULATE_FILE="~/.demo/populated.txt"
 
 cd ~/$PLATFORM_APPLICATION_NAME
@@ -8,7 +10,7 @@ cd ~/$PLATFORM_APPLICATION_NAME
 poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
 
 # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
-if [ "$USE_DEMO_DATA" = "true" ] && [ ! -f "$POPULATE_FILE"]; then
+if [ "$USE_DEMO_DATA" = "true" ] && [ ! -f "$POPULATE_FILE" ]; then
     poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser  --withoutimages
     touch .demo/populated.txt
 else
