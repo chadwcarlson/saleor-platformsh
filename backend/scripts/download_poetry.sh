@@ -8,11 +8,4 @@ curl -s https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry
 python get-poetry.py --version $VERSION
 rm get-poetry.py
 
-# Configure Poetry.
-./scripts/setup_poetry.sh
-. ./scripts/setup_poetry.sh
-
-CURRENT_VERSION=$(poetry version)
-echo -e "Finished. $CURRENT_VERSION\n"
-
 ./scripts/_aline.sh END "Download Poetry"

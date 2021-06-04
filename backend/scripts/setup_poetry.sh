@@ -9,5 +9,3 @@ echo "export POETRY_VIRTUALENVS_PATH=$HOME/.virtualenvs" >> .global/environment
 export PATH="$HOME/.poetry/bin:$PATH"
 export PIP_USER=false
 poetry config virtualenvs.path $HOME/.virtualenvs
-
-./scripts/_aline.sh END "Setup/Source Poetry"
