@@ -1,5 +1,6 @@
 name: 'saleor'
 
+# Edited in two different places for runtime/service versions to be in projects.json. No bueno.
 type: 'python:3.8'
 
 variables:
