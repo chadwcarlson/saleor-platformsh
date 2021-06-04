@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Source poetry environment variables
-./scripts/setup_poetry.sh
+. ./scripts/setup_poetry.sh
 
 # Install dependencies.
 cd ~/$PLATFORM_APPLICATION_NAME
