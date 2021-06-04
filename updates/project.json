@@ -1,0 +1,80 @@
+{
+    "name": "saleor-multiapp-platformsh",
+    "version": "0.0.1",
+    "info": {
+        "allowed": {
+            "major": false,
+            "minor": true,
+            "patch": true
+        },
+        "branch": "auto-updates"
+    },
+    "apps": {
+        "services": {
+            "postgresql": {
+                "version": "13",
+                "upstream": "platformsh-registry"
+            },
+            "redis": {
+                "version": "6.0",
+                "upstream": "platformsh-registry"
+            }
+        },
+        "backend": {
+            "poetry": {
+                "last_update": "06-03-2021-14:39",
+                "previous": {
+                    "release": "patch",
+                    "version": "1.1.5"
+                },
+                "upstream": "python-poetry/poetry",
+                "version": "1.1.6"
+            },
+            "saleor": {
+                "last_update": "06-03-2021-21:12",
+                "previous": {
+                    "release": "patch",
+                    "version": "2.11.8"
+                },
+                "upstream": "mirumee/saleor",
+                "version": "2.11.9"
+            },
+            "nvm": {
+                "upstream": "nvm-sh/nvm",
+                "version": "v0.38.0"
+            },
+            "npm": {
+                "upstream": "npm/cli",
+                "version": "v7.16.0"
+            },
+            "runtime": {
+                "python": {
+                    "version": "3.8",
+                    "upstream": "platformsh-registry"
+                }
+            }
+
+        },
+        "dashboard": {
+            "saleor-dashboard": {
+                "last_update": "06-03-2021-14:39",
+                "previous": {
+                    "release": "minor",
+                    "version": "2.10.2"
+                },
+                "upstream": "mirumee/saleor-dashboard",
+                "version": "2.11.9"
+            },
+            "runtime": {
+                "nodejs": "14",
+                "upstream": "platformsh-registry"
+            }
+        },
+        "storefront": {
+            "runtime": {
+                "nodejs": "10",
+                "upstream": "platformsh-registry"
+            }
+        }
+    }
+}

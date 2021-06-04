@@ -5,6 +5,10 @@ type: 'python:3.8'
 variables:
     env: 
         USE_DEMO_DATA: true
+        NODE_VERSION: !include
+            type: string
+            path: .nvmrc
+
 
 relationships:
     database: "dbb:postgresql"
