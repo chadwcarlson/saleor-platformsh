@@ -38,7 +38,7 @@ mounts:
     'saleor/media':
         source: local
         source_path: 'saleor/media'
-    '/.demo'
+    '/.demo':
         source: local
         source_path: '.demo'
 
