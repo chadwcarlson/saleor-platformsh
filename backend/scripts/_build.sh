@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-me=`basename "$1"`
-./scripts/_aline.sh START $me
+./scripts/_aline.sh START "build"
 
 # Get and configure Poetry.
 ./scripts/download_poetry.sh
@@ -11,4 +10,4 @@ me=`basename "$1"`
 ./scripts/download_saleor.sh
 ./scripts/setup_saleor.sh
 
-./scripts/_aline.sh END $me
+./scripts/_aline.sh END "build"
