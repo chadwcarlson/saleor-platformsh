@@ -4,6 +4,8 @@ set -e
 
 VERSIONS_FILE=upstreams/versions.json
 
+ls -a $PLATFORM_CACHE_DIR
+
 # Get and configure Poetry.
 POETRY_VERSION=$(cat $VERSIONS_FILE | jq -r '.poetry.version')
 ./scripts/download_poetry.sh $POETRY_VERSION
