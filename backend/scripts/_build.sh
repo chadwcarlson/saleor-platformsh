@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-me=$(basename $BASH_SOURCE)
+me=`basename "$0"`
 ./scripts/_aline.sh START $me
 
 # Get and configure Poetry.
