@@ -10,3 +10,5 @@ if [ -d saleor ]; then
     rm -rf saleor
 fi
 mv saleor-$VERSION saleor
+
+./scripts/_aline.sh

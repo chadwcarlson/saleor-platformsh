@@ -12,8 +12,7 @@ poetry install -v --no-dev
 npm -v
 node --version
 
-pwd
-./scripts/download_nvm.sh
+../scripts/download_nvm.sh
 
 npm -v 
 node --version
@@ -25,3 +24,5 @@ node --version
 
 # Collect static assets for Saleor.
 poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
+
+./scripts/_aline.sh
