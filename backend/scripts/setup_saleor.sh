@@ -8,9 +8,10 @@ export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
 
 # Install dependencies.
 cd ~/$PLATFORM_APPLICATION_NAME
-poetry install -v --no-dev
+poetry install --no-dev
 
 # Download and setup Node, NPM, and NVM.
+VERSIONS_FILE=upstreams/versions.json
 NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
 ../scripts/download_nvm.sh $NVM_VERSION
 
