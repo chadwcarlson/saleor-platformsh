@@ -3,6 +3,7 @@
 # Check build cache usage https://gist.github.com/devicezero/b38ed48bccaef72a0ab24293552992d8
 VERSION=$1
 echo -e "\nDownloading NVM (\033[1m$VERSION\033[0m)\n"
+pwd
 NODE_VERSION=$(cat .nvmrc)
 unset NPM_CONFIG_PREFIX
 export NVM_DIR="$PLATFORM_APP_DIR/.nvm"

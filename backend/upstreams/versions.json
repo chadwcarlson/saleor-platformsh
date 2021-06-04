@@ -31,5 +31,9 @@
         },
         "upstream": "mirumee/saleor",
         "version": "2.11.9"
+    },
+    "nvm": {
+        "upstream": "nvm-sh/nvm",
+        "version": "v0.38.0"
     }
 }
