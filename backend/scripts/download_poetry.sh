@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-VERSIONS_FILE=upstreams/versions.json
-UPSTREAM=$(cat $VERSIONS_FILE | jq -r '.poetry.upstream')
-VERSION=$(cat $VERSIONS_FILE | jq -r '.poetry.version')
+./scripts/_aline.sh START "Download Poetry"
 
-curl -s https://raw.githubusercontent.com/$UPSTREAM/master/get-poetry.py >> get-poetry.py
+VERSION=$1
+echo -e "\nDownloading Poetry (\033[1m$VERSION\033[0m)\n"
+curl -s https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py >> get-poetry.py
 python get-poetry.py --version $VERSION
 rm get-poetry.py
 
-./scripts/_aline.sh
+# Configure Poetry.
+./scripts/setup_poetry.sh
+
+CURRENT_VERSION=$(poetry version)
+echo -e "Finished. $CURRENT_VERSION\n"
+
+./scripts/_aline.sh END "Download Poetry"

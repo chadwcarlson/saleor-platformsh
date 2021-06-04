@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
-./scripts/_aline.sh START "build"
+./scripts/_aline.sh START "BUILD"
+
+set -e
+
+VERSIONS_FILE=upstreams/versions.json
 
 # Get and configure Poetry.
-./scripts/download_poetry.sh
-./scripts/setup_poetry.sh
+POETRY_VERSION=$(cat $VERSIONS_FILE | jq -r '.poetry.version')
+./scripts/download_poetry.sh $POETRY_VERSION
 
 # Get and configure Saleor.
+SALEOR_VERSION=$(cat $VERSIONS_FILE | jq -r '.saleor.version')
 ./scripts/download_saleor.sh
 ./scripts/setup_saleor.sh
 
-./scripts/_aline.sh END "build"
+./scripts/_aline.sh END "BUILD"

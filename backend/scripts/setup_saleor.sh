@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./scripts/_aline.sh START "Setup Saleor"
+
 # Source poetry environment variables
 . ./scripts/setup_poetry.sh
 export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
@@ -12,7 +14,9 @@ poetry install -v --no-dev
 npm -v
 node --version
 
-../scripts/download_nvm.sh
+NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
+
+../scripts/download_nvm.sh $NODE_VERSION
 
 npm -v 
 node --version
@@ -25,4 +29,4 @@ node --version
 # Collect static assets for Saleor.
 poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
 
-./scripts/_aline.sh
+./scripts/_aline.sh END "Setup Saleor"
