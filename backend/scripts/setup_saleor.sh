@@ -21,6 +21,6 @@ NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
 
 
 # Collect static assets for Saleor.
-poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
+# poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
 
 ./scripts/_aline.sh END "Setup Saleor"
