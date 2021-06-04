@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./scripts/_aline.sh START "Setup/Source Poetry"
+echo -e "Sourcing Poetry.\n"
 
 # Configure Poetry.   
 . $PLATFORM_APP_DIR/.poetry/env

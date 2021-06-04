@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-./scripts/_aline.sh START "BUILD"
-
 set -e
 
 VERSIONS_FILE=upstreams/versions.json
@@ -14,5 +12,3 @@ POETRY_VERSION=$(cat $VERSIONS_FILE | jq -r '.poetry.version')
 SALEOR_VERSION=$(cat $VERSIONS_FILE | jq -r '.saleor.version')
 ./scripts/download_saleor.sh
 ./scripts/setup_saleor.sh
-
-./scripts/_aline.sh END "BUILD"

@@ -10,6 +10,7 @@ rm get-poetry.py
 
 # Configure Poetry.
 ./scripts/setup_poetry.sh
+. ./scripts/setup_poetry.sh
 
 CURRENT_VERSION=$(poetry version)
 echo -e "Finished. $CURRENT_VERSION\n"
