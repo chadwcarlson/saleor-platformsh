@@ -10,16 +10,9 @@ export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
 cd ~/$PLATFORM_APPLICATION_NAME
 poetry install -v --no-dev
 
-# NPM - version?
-npm -v
-node --version
-
+# Download and setup Node, NPM, and NVM.
 NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
-
-../scripts/download_nvm.sh $NODE_VERSION
-
-npm -v 
-node --version
+../scripts/download_nvm.sh $NVM_VERSION
 
 # npm install
 # poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py get_graphql_schema > ~/$PLATFORM_APPLICATION_NAME/saleor/graphql/schema.graphql
