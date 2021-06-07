@@ -37,10 +37,8 @@ hooks:
         # Get Saleor.
         SALEOR_VERSION=$(cat $VERSIONS_FILE | jq -r '.saleor.version')
         echo -e "\nDownloading Saleor backend (\033[1m$SALEOR_VERSION\033[0m)\n"
-        wget --quiet -c https://github.com/mirumee/saleor/archive/refs/tags/$VERSION.tar.gz -O - | tar -xz
+        wget --quiet -c https://github.com/mirumee/saleor/archive/refs/tags/$SALEOR_VERSION.tar.gz -O - | tar -xz
         mv saleor-$SALEOR_VERSION saleor
-        CURRENT_VERSION=$(cat saleor/package.json | jq -r '.version')
-        echo -e "Finished. Saleor version $CURRENT_VERSION\n"
 
         # Configure Saleor
         export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
