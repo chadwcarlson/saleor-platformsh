@@ -48,8 +48,15 @@ hooks:
         poetry install --no-dev
 
         # Download and setup Node, NPM, and NVM.
-        ./scripts/download_nvm.sh
+        ../scripts/download_nvm.sh
         node --version 
+
+        npm install
+        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py get_graphql_schema > ~/$PLATFORM_APPLICATION_NAME/saleor/graphql/schema.graphql
+        npm run build-emails
+
+        # Collect static assets for Saleor.
+        poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
     deploy: |
         node --version
 
