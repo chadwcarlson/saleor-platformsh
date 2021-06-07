@@ -48,6 +48,7 @@ hooks:
         poetry install --no-dev
 
         # Download and setup Node, NPM, and NVM.
+        cd $PLATFORM_APP_DIR
         NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
         echo -e "\nDownloading NVM (\033[1m$VERSION\033[0m)\n"
         node --version
@@ -57,9 +58,8 @@ hooks:
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
         if [ ! -d "$NVM_DIR/" ]; then
             # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
-            curl -f -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
+            curl -f -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
         fi
-        ls -a $NVM_DIR
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         node --version 
 
