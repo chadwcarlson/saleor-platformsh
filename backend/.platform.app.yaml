@@ -6,11 +6,10 @@ type: 'python:3.8'
 variables:
     env: 
         USE_DEMO_DATA: true
-        # POPULATE_FILE: '~/.demo/populated.txt'
         VERSIONS_FILE: 'upstreams/versions.json'
         
 relationships:
-    database: "dbb:postgresql"
+    database: "db:postgresql"
     rediscache: "cacheredis:redis"
 
 hooks:
@@ -73,7 +72,7 @@ hooks:
     deploy: |
         set -e
 
-        export POPULATE_FILE="~/.demo/populated.txt"
+        export POPULATE_FILE="$PLATFORM_APP_DIR/.demo/populated.txt"
 
         cd ~/$PLATFORM_APPLICATION_NAME
 
