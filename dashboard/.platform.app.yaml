@@ -6,8 +6,6 @@ variables:
     env:
         NODE_OPTIONS: --max-old-space-size=768
         NO_UPDATE_NOTIFIER: true
-        # SHARP_IGNORE_GLOBAL_LIBVIPS: true
-        # USE_DEMO_DATA: true
 
 hooks:
     build: !include
