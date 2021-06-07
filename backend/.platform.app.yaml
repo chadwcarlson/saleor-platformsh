@@ -6,7 +6,9 @@ type: 'python:3.8'
 variables:
     env: 
         USE_DEMO_DATA: true
-
+        POPULATE_FILE: '~/.demo/populated.txt'
+        VERSIONS_FILE: '~/upstreams/versions.json'
+        
 relationships:
     database: "dbb:postgresql"
     rediscache: "cacheredis:redis"
@@ -15,7 +17,7 @@ hooks:
     build: |
         set -e
 
-        VERSIONS_FILE=upstreams/versions.json
+        # VERSIONS_FILE=upstreams/versions.json
 
         ls -a $PLATFORM_CACHE_DIR
 
@@ -71,7 +73,7 @@ hooks:
     deploy: |
         set -e
 
-        POPULATE_FILE="~/.demo/populated.txt"
+        # POPULATE_FILE="~/.demo/populated.txt"
 
         cd ~/$PLATFORM_APPLICATION_NAME
 
@@ -81,7 +83,7 @@ hooks:
         # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
         if [ "$USE_DEMO_DATA" = "true" ] && [ ! -f "$POPULATE_FILE" ]; then
             poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser  --withoutimages
-            touch .demo/populated.txt
+            touch $POPULATE_FILE
         else
             poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py createsuperuser
             if [ -f "$POPULATE_FILE" ]; then
