@@ -64,11 +64,11 @@ hooks:
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         node --version 
 
-hooks:
-    build: !include
-        type: string
-        path: scripts/_build.sh
-#     deploy: !include
+# hooks:
+#     build: !include
+#         type: string
+#         path: scripts/_build.sh
+# #     deploy: !include
 #         type: string
 #         path: scripts/_deploy.sh
 
