@@ -15,7 +15,7 @@ hooks:
         path: upstreams/dashboard.sh
     post_deploy: |
         # set -e 
-        npm run build
+        # npm run build
 
 # relationships:
 #     api: "saleor:http"

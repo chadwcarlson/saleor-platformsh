@@ -11,3 +11,6 @@ if [ -d saleor-dashboard ]; then
     rm -rf saleor-dashboard
 fi
 mv saleor-dashboard-$VERSION saleor-dashboard
+
+cd saleor-dashboard
+npm install
