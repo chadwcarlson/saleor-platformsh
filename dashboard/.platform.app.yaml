@@ -15,6 +15,7 @@ hooks:
         path: upstreams/dashboard.sh
     post_deploy: |
         # set -e 
+        cd saleor-dashboard
         npm run build
 
 # relationships:
@@ -37,3 +38,12 @@ web:
             scripts: false
             allow: true
             expires: 1d
+
+source:
+    operations:
+        upstream_update: 
+            command: ./upstreams/update.sh $UPSTREAM
+        update_dependencies:
+            command: |
+                set -e
+                cd saleor-dashboard && npm update

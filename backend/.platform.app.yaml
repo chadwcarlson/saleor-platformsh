@@ -129,7 +129,7 @@ source:
         update_dependencies:
             command: |
                 set -e
-                cd saleor && poetry update
+                cd saleor && poetry update && npm update
 
 # crons:
 #     update_saleor:

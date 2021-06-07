@@ -17,6 +17,7 @@
 "https://dashboard.{default}/":
     type: upstream
     upstream: "dashboard:http"
+    id: dashboard
 
 "https://www.dashboard.{default}/":
     type: redirect
