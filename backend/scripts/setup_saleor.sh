@@ -13,6 +13,7 @@ poetry install --no-dev
 # Download and setup Node, NPM, and NVM.
 VERSIONS_FILE=../upstreams/versions.json
 NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
+echo $NVM_VERSION
 ../scripts/download_nvm.sh $NVM_VERSION
 
 # npm install
@@ -23,4 +24,4 @@ NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
 # Collect static assets for Saleor.
 # poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
 
-./scripts/_aline.sh END "Setup Saleor"
+../scripts/_aline.sh END "Setup Saleor"
