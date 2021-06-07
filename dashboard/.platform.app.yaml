@@ -12,9 +12,10 @@ hooks:
         type: string
         path: upstreams/dashboard.sh
     post_deploy: |
-        # set -e 
-        cd saleor-dashboard
-        npm run build
+        # set -e
+        cat /run/config.json | jq .info.limits 
+        # cd saleor-dashboard
+        # npm run build
 
 # relationships:
 #     api: "saleor:http"
