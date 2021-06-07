@@ -59,6 +59,7 @@ hooks:
             # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
             curl -f -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
         fi
+        ls -a $NVM_DIR
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         node --version 
 
