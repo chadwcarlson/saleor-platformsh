@@ -1,0 +1,37 @@
+name: storefront
+
+type: 'nodejs:10'
+
+build:
+    flavor: none
+
+variables:
+    env:
+        NODE_OPTIONS: --max-old-space-size=768
+        NO_UPDATE_NOTIFIER: true
+        # USE_DEMO_DATA: true
+
+hooks:
+    build: |
+        npm install
+    post_deploy: |
+        echo $API_URI
+        npm run build
+
+# The size of the persistent disk of the application (in MB).
+disk: 1024
+
+mounts:
+    dist:
+        source: local
+        source_path: dist
+
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'dist'
+            index: ['index.html']
+            scripts: false
+            allow: true
+            expires: 1d
