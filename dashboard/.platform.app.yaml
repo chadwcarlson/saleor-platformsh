@@ -1,7 +1,6 @@
 name: dashboard
 
 type: 'nodejs:14'
-size: M
 
 variables:
     env:
@@ -15,8 +14,8 @@ hooks:
     post_deploy: |
         # set -e
         cat /run/config.json | jq .info.limits 
-        # cd saleor-dashboard
-        # npm run build
+        cd saleor-dashboard
+        npm run build
 
 # relationships:
 #     api: "saleor:http"
