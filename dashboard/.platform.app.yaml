@@ -24,7 +24,7 @@ hooks:
 disk: 1024
 
 mounts:
-    build:
+    saleor-dashboard/build:
         source: local
         source_path: build
 
