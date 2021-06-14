@@ -16,7 +16,7 @@ hooks:
         npm install
     post_deploy: |
         echo $API_URI
-        npm run build
+        npm run build:export
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
@@ -25,6 +25,9 @@ mounts:
     dist:
         source: local
         source_path: dist
+    '/.next':
+        source: local
+        source_path: 'next'
 
 web:
     locations:
