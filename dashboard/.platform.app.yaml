@@ -32,7 +32,7 @@ web:
     locations:
         '/':
             # The public directory of the application relative to its root.
-            root: 'build/dashboard'
+            root: 'saleor-dashboard/build/dashboard'
             index: ['index.html']
             scripts: false
             allow: true
