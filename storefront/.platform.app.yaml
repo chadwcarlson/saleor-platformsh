@@ -7,7 +7,7 @@ build:
 
 variables:
     env:
-        NODE_OPTIONS: --max-old-space-size=768
+        # NODE_OPTIONS: --max-old-space-size=768
         NO_UPDATE_NOTIFIER: true
         # USE_DEMO_DATA: true
 
@@ -16,7 +16,7 @@ hooks:
         npm install
     post_deploy: |
         echo $API_URI
-        npm run build:export
+        npm run build
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
