@@ -81,7 +81,7 @@ hooks:
 
         # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
         if [ "$USE_DEMO_DATA" = "true" ] && [ ! -f "$POPULATE_FILE" ]; then
-            poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser  --withoutimages
+            poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser
             touch $POPULATE_FILE
         else
             poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py createsuperuser
