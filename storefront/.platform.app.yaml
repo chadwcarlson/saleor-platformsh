@@ -22,7 +22,7 @@ hooks:
 disk: 1024
 
 mounts:
-    dist:
+    saleor-storefront/dist:
         source: local
         source_path: dist
     # '/.next':
@@ -33,7 +33,7 @@ web:
     locations:
         '/':
             # The public directory of the application relative to its root.
-            root: 'dist'
+            root: 'saleor-storefront/dist'
             index: ['index.html']
             scripts: false
             allow: true
