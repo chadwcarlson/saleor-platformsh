@@ -1,0 +1,18 @@
+{
+    "upstream": "https://raw.githubusercontent.com/platformsh/platformsh-docs/master/docs/data/registry.json",
+    "runtimes": {
+        "backend": [
+            "python"
+        ],
+        "dashboard": [
+            "nodejs"
+        ],
+        "storefront": [
+            "nodejs"
+        ]
+    },
+    "services": [
+        "postgresql",
+        "redis"
+    ]
+}

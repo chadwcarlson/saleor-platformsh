@@ -1,5 +1,6 @@
 {
     "name": "saleor-multiapp-platformsh",
+    "upstream": "https://github.com/chadwcarlson/saleor-shop-platformsh",
     "version": "0.0.1",
     "info": {
         "allowed": {
