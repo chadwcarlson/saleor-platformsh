@@ -7,29 +7,29 @@ build:
 
 variables:
     env:
-        NODE_OPTIONS: --max-old-space-size=768
+        # NODE_OPTIONS: --max-old-space-size=768
         NO_UPDATE_NOTIFIER: true
 
 hooks:
     build: !include
         type: string
         path: upstreams/storefront.sh
-    post_deploy: |
-        cd saleor-storefront
-        echo $API_URI
-        ls -a
-        npm run build
+    # post_deploy: |
+    #     cd saleor-storefront
+    #     echo $API_URI
+    #     ls -a
+    #     npm run build
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
-mounts:
-    saleor-storefront/dist:
-        source: local
-        source_path: dist
-    saleor-storefront/.next:
-        source: local
-        source_path: 'next'
+# mounts:
+#     saleor-storefront/dist:
+#         source: local
+#         source_path: dist
+#     saleor-storefront/.next:
+#         source: local
+#         source_path: 'next'
 
 web:
     locations:
