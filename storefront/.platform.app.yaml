@@ -16,6 +16,8 @@ hooks:
         path: upstreams/storefront.sh
     post_deploy: |
         cd saleor-storefront
+        echo $API_URI
+        ls -a
         npm run build
 
 # The size of the persistent disk of the application (in MB).
