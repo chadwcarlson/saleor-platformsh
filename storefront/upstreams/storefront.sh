@@ -15,5 +15,5 @@ set -e
 cd saleor-storefront
 npm install
 
-export API_URI=https://api.master-7rqtwti-pm723toxitfuq.us-4.platformsh.site/graphql/
-npm run build
+# export API_URI=https://api.master-7rqtwti-pm723toxitfuq.us-4.platformsh.site/graphql/
+# npm run build

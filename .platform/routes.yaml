@@ -7,7 +7,7 @@
 
 "https://api.{default}/":
     type: upstream
-    upstream: "saleorb:http"
+    upstream: "saleor:http"
     id: backend
 
 "https://www.api.{default}/":

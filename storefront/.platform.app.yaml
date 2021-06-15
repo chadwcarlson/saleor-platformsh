@@ -14,7 +14,9 @@ hooks:
     build: !include
         type: string
         path: upstreams/storefront.sh
-    # post_deploy: |
+    post_deploy: |
+        export API_URI=https://api.master-7rqtwti-pm723toxitfuq.us-4.platformsh.site/graphql/
+        npm run build
     #     cd saleor-storefront
     #     echo $API_URI
     #     ls -a
@@ -23,13 +25,13 @@ hooks:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
-# mounts:
-#     saleor-storefront/dist:
-#         source: local
-#         source_path: dist
-#     saleor-storefront/.next:
-#         source: local
-#         source_path: 'next'
+mounts:
+    saleor-storefront/dist:
+        source: local
+        source_path: dist
+    saleor-storefront/.next:
+        source: local
+        source_path: 'next'
 
 web:
     locations:
