@@ -45,14 +45,14 @@ hooks:
         export SECRET_KEY=$PLATFORM_PROJECT_ENTROPY
 
         # Install dependencies.
-        cd ~/$PLATFORM_APPLICATION_NAME
+        cd saleor
         poetry install --no-dev
 
         # Download and setup Node, NPM, and NVM.
         cd $PLATFORM_APP_DIR
         NVM_VERSION=$(cat $VERSIONS_FILE | jq -r '.nvm.version')
         echo -e "\nDownloading NVM (\033[1m$VERSION\033[0m)\n"
-        export NODE_VERSION=$(cat ~/$PLATFORM_APPLICATION_NAME/.nvmrc)
+        export NODE_VERSION=$(cat ~/saleor/.nvmrc)
         unset NPM_CONFIG_PREFIX
         export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
         if [ ! -d "$NVM_DIR/" ]; then
@@ -62,29 +62,29 @@ hooks:
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
         # Setup Saleor
-        cd ~/$PLATFORM_APPLICATION_NAME
+        cd saleor
         npm install
-        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py get_graphql_schema > ~/$PLATFORM_APPLICATION_NAME/saleor/graphql/schema.graphql
+        poetry run python ~/saleor/manage.py get_graphql_schema > ~/saleor/saleor/graphql/schema.graphql
         npm run build-emails
 
         # Collect static assets for Saleor.
-        poetry run ~/$PLATFORM_APPLICATION_NAME/manage.py collectstatic --no-input
+        poetry run ~/saleor/manage.py collectstatic --no-input
     deploy: |
         set -e
 
         export POPULATE_FILE="$PLATFORM_APP_DIR/.demo/populated.txt"
 
-        cd ~/$PLATFORM_APPLICATION_NAME
+        cd saleor
 
         # Apply database migrations.
-        poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py migrate
+        poetry run python ~/saleor/manage.py migrate
 
         # Populate database with demo data. (Initial admin user created: admin@example.com/admin)
         if [ "$USE_DEMO_DATA" = "true" ] && [ ! -f "$POPULATE_FILE" ]; then
-            poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py populatedb --createsuperuser
+            poetry run python ~/saleor/manage.py populatedb --createsuperuser
             touch $POPULATE_FILE
         else
-            poetry run python ~/$PLATFORM_APPLICATION_NAME/manage.py createsuperuser
+            poetry run python ~/saleor/manage.py createsuperuser
             if [ -f "$POPULATE_FILE" ]; then
                 rm -rf $POPULATE_FILE
             fi
@@ -102,7 +102,7 @@ web:
     upstream:
         socket_family: unix
     commands:
-        start: "cd ~/$PLATFORM_APPLICATION_NAME && poetry run gunicorn --bind unix:$SOCKET --workers 4 --worker-class uvicorn.workers.UvicornWorker saleor.asgi:application"
+        start: "cd ~/saleor && poetry run gunicorn --bind unix:$SOCKET --workers 4 --worker-class uvicorn.workers.UvicornWorker saleor.asgi:application"
     locations:
         "/":
             passthru: true
