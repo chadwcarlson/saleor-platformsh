@@ -15,7 +15,7 @@ hooks:
         type: string
         path: upstreams/storefront.sh
     post_deploy: |
-        export API_URI=https://api.master-7rqtwti-pm723toxitfuq.us-4.platformsh.site/graphql/
+        # export API_URI=https://api.master-7rqtwti-pm723toxitfuq.us-4.platformsh.site/graphql/
         cd saleor-storefront
         npm run build
     #     cd saleor-storefront
