@@ -25,9 +25,9 @@ mounts:
     saleor-storefront/dist:
         source: local
         source_path: dist
-    # '/.next':
-    #     source: local
-    #     source_path: 'next'
+    saleor-storefront/.next:
+        source: local
+        source_path: 'next'
 
 web:
     locations:
