@@ -124,14 +124,15 @@ mounts:
 
 source:
     operations:
-        upstream_update: |
-            set -e
-            # A common Git history means a normal merge should be
-            # valid, at least most of the time.
-            git remote add upstream $UPDATE_REMOTE
-            git fetch --all
-            git merge upstream/master 
-            # command: ./upstreams/update.sh $UPSTREAM
+        upstream_update: 
+            command: |
+                set -e
+                # A common Git history means a normal merge should be
+                # valid, at least most of the time.
+                git remote add upstream $UPDATE_REMOTE
+                git fetch --all
+                git merge upstream/master 
+                # command: ./upstreams/update.sh $UPSTREAM
         update_dependencies:
             command: |
                 set -e
