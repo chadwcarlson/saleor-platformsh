@@ -30,6 +30,6 @@
             "version": "2.10.2"
         }, 
         "upstream": "mirumee/saleor-dashboard", 
-        "version": "2.11.1"
+        "version": "2.11.0"
     }
 }
