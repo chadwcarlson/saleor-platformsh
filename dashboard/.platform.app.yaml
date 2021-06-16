@@ -40,8 +40,8 @@ web:
 
 source:
     operations:
-        upstream_update: 
-            command: ./upstreams/update.sh $UPSTREAM
+        # upstream_update: 
+        #     command: ./upstreams/update.sh $UPSTREAM
         update_dependencies:
             command: |
                 set -e
