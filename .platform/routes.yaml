@@ -23,10 +23,10 @@
     type: redirect
     to: "https://dashboard.{default}/"
 
-# "https://{default}/":
-#     type: upstream
-#     upstream: "storefront:http"
+"https://{default}/":
+    type: upstream
+    upstream: "storefront:http"
 
-# "https://www.{default}/":
-#     type: redirect
-#     to: "https://{default}/"
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
